@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+option csharp_namespace = "Apresentacao";
+
+package gestaobancaria;
+
+service ContasBancariasGrpc {
+  rpc Inserir (InserirContaRequest) returns (EmptyResponse);
+  rpc BuscarContas (EmptyRequest) returns (BuscarContasResponse);
+  rpc BuscarContaPorId (BuscarPorIdRequest) returns (ContaResponse);
+  rpc BuscarExtrato (BuscarPorIdRequest) returns (ExtratoResponse);
+  rpc Deletar (BuscarPorIdRequest) returns (EmptyResponse);
+  rpc InserirMovimento (InserirMovimentoRequest) returns (EmptyResponse);
+}
+
+message EmptyRequest {}
+
+message BuscarPorIdRequest {
+  int32 id = 1;
+}
+
+message InserirContaRequest {
+  string titular = 1;
+  string numero_conta = 2;
+  int32 tipo_conta = 3;
+}
+
+message InserirMovimentoRequest {
+  int32 conta_bancaria_id = 1;
+  double valor = 2;
+  int32 tipo_movimento = 3;
+  string descricao = 4;
+}
+
+message EmptyResponse {}
+
+message ContaResponse {
+  int32 id = 1;
+  string titular = 2;
+  string numero_conta = 3;
+  int32 tipo_conta = 4;
+  double saldo = 5;
+}
+
+message BuscarContasResponse {
+  repeated ContaResponse contas = 1;
+}
+
+message MovimentoResponse {
+  int32 id = 1;
+  int32 conta_bancaria_id = 2;
+  double valor = 3;
+  int32 tipo_movimento = 4;
+  string descricao = 5;
+}
+
+message ExtratoResponse {
+  ContaResponse conta = 1;
+  repeated MovimentoResponse movimentos = 2;
+}

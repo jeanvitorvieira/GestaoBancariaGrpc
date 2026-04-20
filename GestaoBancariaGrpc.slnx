@@ -1,4 +1,9 @@
 <Solution>
+  <Folder Name="/Benchmarks/">
+    <File Path="Benchmarks\grpc_contas.js" />
+    <File Path="Benchmarks\grpc_extrato.js" />
+    <File Path="Benchmarks\grpc_seed_movimentos.js" />
+  </Folder>
   <Project Path="Apresentacao/Apresentacao.csproj" />
   <Project Path="Dominio/Dominio.csproj" />
   <Project Path="Entidades/Entidades.csproj" />
